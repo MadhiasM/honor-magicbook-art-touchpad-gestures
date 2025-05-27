@@ -49,7 +49,7 @@ int setup_uinput_device() {
     ioctl(ufd, UI_SET_KEYBIT, KEY_VOLUMEUP);
     ioctl(ufd, UI_SET_KEYBIT, KEY_VOLUMEDOWN);
     ioctl(ufd, UI_SET_KEYBIT, KEY_MIN_INTERESTING); // Platzhalter
-    ioctl(ufd, UI_SET_KEYBIT, KEY_MINIMIZE);        // Fenster minimieren
+    //ioctl(ufd, UI_SET_KEYBIT, KEY_MINIMIZE);        // Fenster minimieren
     ioctl(ufd, UI_SET_KEYBIT, KEY_CLOSE);           // Fenster schließen
     ioctl(ufd, UI_SET_KEYBIT, KEY_SCREENLOCK);      // Benutzt für Notifikation (Platzhalter)
 
@@ -97,7 +97,7 @@ int main() {
             } else if (buf[1] == 0x0a && buf[2] == 0x03) {
                 send_key(ufd, KEY_SCREENLOCK); // Platzhalter für Notification Panel
             } else if (buf[1] == 0x08) {
-                send_key(ufd, KEY_MINIMIZE); // Fenster minimieren
+                //send_key(ufd, KEY_MINIMIZE); // Fenster minimieren
             } else if (buf[1] == 0x09) {
                 send_key(ufd, KEY_CLOSE);    // Fenster schließen
             }
