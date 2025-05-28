@@ -16,6 +16,7 @@ Group=input
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=gesture-daemon
+SyslogLevel=info
 
 # Security hardening
 NoNewPrivileges=yes
