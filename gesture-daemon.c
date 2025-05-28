@@ -90,7 +90,9 @@ int main() {
 
     uint8_t buf[64];
     while (keep_running) {
-        int n = read(hid, buf, sizeof(buf)); // TODO: Check if blocking could be an issue (example: if you try to stop the service, it will only stop once you provide any touchpad input, since only the data is received in the buffer and the blocked passage is left)
+        // TODO: Check if blocking could be an issue (example: if you try to stop the service, it will only stop once you provide any touchpad input, since only the data is received in the buffer and the blocked passage is left)
+        // TODO: During boot, touchpad is needed now due to blocking nature of read: "A stop job is running for Touchpad Gesture daemon". Fix needed, otherwise booting is not possible without touchpad action.
+        int n = read(hid, buf, sizeof(buf));
         if (n < 3) continue;
 
         if (buf[0] == 0x0e) {
