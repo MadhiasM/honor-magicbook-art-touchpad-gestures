@@ -17,6 +17,7 @@ StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=gesture-daemon
 SyslogLevel=info
+LogLevelMax=info
 
 # Security hardening
 NoNewPrivileges=yes
