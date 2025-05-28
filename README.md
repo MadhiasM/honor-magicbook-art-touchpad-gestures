@@ -12,7 +12,7 @@ git clone https://github.com/MadhiasM/honor-magicbook-art-touchpad-gestures
 gcc -o gesture-daemon gesture-daemon.c
 
 # Install to system location
-sudo cp gesture-service /usr/local/bin/
+sudo cp gesture-daemon /usr/local/bin/
 sudo chmod +x /usr/local/bin/gesture-daemon
 ```
 
@@ -20,19 +20,19 @@ sudo chmod +x /usr/local/bin/gesture-daemon
 
 ```bash
 # Copy service file to systemd directory
-sudo cp gesture-service.service /etc/systemd/system/
+sudo cp gesture-daemon.service /etc/systemd/system/
 
 # Reload systemd to recognize new service
 sudo systemctl daemon-reload
 
 # Enable service to start at boot
-sudo systemctl enable gesture-service
+sudo systemctl enable gesture-daemon
 
 # Start service
-sudo systemctl start gesture-service
+sudo systemctl start gesture-daemon
 
 # Check service status
-sudo systemctl status gesture-service
+sudo systemctl status gesture-daemon
 ```
 
 Your gesture service should now be running as a proper systemd service with logging and automatic startup
