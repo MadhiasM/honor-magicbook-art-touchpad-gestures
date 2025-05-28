@@ -1,8 +1,8 @@
-savedcmd_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o := gcc-12 -Wp,-MMD,/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/.my_touchpad.o.d -nostdinc -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -I./ubuntu/include -include ./include/linux/compiler_types.h -D__KERNEL__ -fmacro-prefix-map=./= -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -fcf-protection=none -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -Wno-sign-compare -fno-asynchronous-unwind-tables -mindirect-branch=thunk-extern -mindirect-branch-register -mindirect-branch-cs-prefix -mfunction-return=thunk-extern -fno-jump-tables -mharden-sls=all -fpatchable-function-entry=16,16 -fno-delete-null-pointer-checks -O2 -fno-allow-store-data-races -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -ftrivial-auto-var-init=zero -fno-stack-clash-protection -fzero-call-used-regs=used-gpr -pg -mrecord-mcount -mfentry -DCC_USING_FENTRY -falign-functions=16 -fno-strict-overflow -fno-stack-check -fconserve-stack -Wall -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=1024 -Wno-main -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-dangling-pointer -Wvla -Wno-pointer-sign -Wcast-function-type -Wno-stringop-overflow -Wno-array-bounds -Wno-alloc-size-larger-than -Wimplicit-fallthrough=5 -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wenum-conversion -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-restrict -Wno-packed-not-aligned -Wno-format-overflow -Wno-format-truncation -Wno-stringop-truncation -Wno-override-init -Wno-missing-field-initializers -Wno-type-limits -Wno-shift-negative-value -Wno-maybe-uninitialized -Wno-sign-compare -g -gdwarf-5  -fsanitize=bounds-strict -fsanitize=shift -fsanitize=bool -fsanitize=enum  -DMODULE  -DKBUILD_BASENAME='"my_touchpad"' -DKBUILD_MODNAME='"my_touchpad"' -D__KBUILD_MODNAME=kmod_my_touchpad -c -o /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.c   ; ./tools/objtool/objtool --hacks=jump_label --hacks=noinstr --hacks=skylake --retpoline --rethunk --sls --stackval --static-call --uaccess --prefix=16   --module /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o
+savedcmd_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o := gcc-12 -Wp,-MMD,/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/.gestures.o.d -nostdinc -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -I./ubuntu/include -include ./include/linux/compiler_types.h -D__KERNEL__ -fmacro-prefix-map=./= -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -fcf-protection=none -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -Wno-sign-compare -fno-asynchronous-unwind-tables -mindirect-branch=thunk-extern -mindirect-branch-register -mindirect-branch-cs-prefix -mfunction-return=thunk-extern -fno-jump-tables -mharden-sls=all -fpatchable-function-entry=16,16 -fno-delete-null-pointer-checks -O2 -fno-allow-store-data-races -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -ftrivial-auto-var-init=zero -fno-stack-clash-protection -fzero-call-used-regs=used-gpr -pg -mrecord-mcount -mfentry -DCC_USING_FENTRY -falign-functions=16 -fno-strict-overflow -fno-stack-check -fconserve-stack -Wall -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=1024 -Wno-main -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-dangling-pointer -Wvla -Wno-pointer-sign -Wcast-function-type -Wno-stringop-overflow -Wno-array-bounds -Wno-alloc-size-larger-than -Wimplicit-fallthrough=5 -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wenum-conversion -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-restrict -Wno-packed-not-aligned -Wno-format-overflow -Wno-format-truncation -Wno-stringop-truncation -Wno-override-init -Wno-missing-field-initializers -Wno-type-limits -Wno-shift-negative-value -Wno-maybe-uninitialized -Wno-sign-compare -g -gdwarf-5  -fsanitize=bounds-strict -fsanitize=shift -fsanitize=bool -fsanitize=enum  -DMODULE  -DKBUILD_BASENAME='"gestures"' -DKBUILD_MODNAME='"gestures"' -D__KBUILD_MODNAME=kmod_gestures -c -o /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.c   ; ./tools/objtool/objtool --hacks=jump_label --hacks=noinstr --hacks=skylake --retpoline --rethunk --sls --stackval --static-call --uaccess --prefix=16   --module /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o
 
-source_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o := /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.c
+source_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o := /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.c
 
-deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o := \
+deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o := \
   include/linux/compiler-version.h \
     $(wildcard include/config/CC_VERSION_TEXT) \
   include/linux/kconfig.h \
@@ -1029,6 +1029,14 @@ deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touch
     $(wildcard include/config/HAVE_MOD_ARCH_SPECIFIC) \
     $(wildcard include/config/MODULES_USE_ELF_REL) \
     $(wildcard include/config/MODULES_USE_ELF_RELA) \
+  include/linux/hid.h \
+    $(wildcard include/config/HID_BATTERY_STRENGTH) \
+    $(wildcard include/config/BPF) \
+    $(wildcard include/config/PM) \
+    $(wildcard include/config/HID_PID) \
+  include/linux/mod_devicetable.h \
+  include/uapi/linux/mei.h \
+  include/uapi/linux/mei_uuid.h \
   include/linux/input.h \
   include/uapi/linux/input.h \
   include/uapi/linux/input-event-codes.h \
@@ -1065,7 +1073,6 @@ deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touch
   include/linux/pm.h \
     $(wildcard include/config/VT_CONSOLE_SLEEP) \
     $(wildcard include/config/CXL_SUSPEND) \
-    $(wildcard include/config/PM) \
     $(wildcard include/config/PM_CLK) \
     $(wildcard include/config/PM_GENERIC_DOMAINS) \
   include/linux/device/bus.h \
@@ -1074,13 +1081,6 @@ deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touch
   include/linux/device/driver.h \
   arch/x86/include/asm/device.h \
   include/linux/pm_wakeup.h \
-  include/linux/mod_devicetable.h \
-  include/uapi/linux/mei.h \
-  include/uapi/linux/mei_uuid.h \
-  include/linux/hid.h \
-    $(wildcard include/config/HID_BATTERY_STRENGTH) \
-    $(wildcard include/config/BPF) \
-    $(wildcard include/config/HID_PID) \
   include/linux/power_supply.h \
     $(wildcard include/config/THERMAL) \
     $(wildcard include/config/LEDS_TRIGGERS) \
@@ -1291,9 +1291,22 @@ deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touch
   include/linux/bpf_types.h \
     $(wildcard include/config/NETFILTER_BPF_LINK) \
     $(wildcard include/config/XDP_SOCKETS) \
+  include/linux/usb.h \
+    $(wildcard include/config/USB_MON) \
+    $(wildcard include/config/USB_LED_TRIG) \
+  include/linux/usb/ch9.h \
+  include/uapi/linux/usb/ch9.h \
+  include/linux/delay.h \
+  arch/x86/include/asm/delay.h \
+  include/asm-generic/delay.h \
+  include/linux/pm_runtime.h \
+  include/linux/hidraw.h \
+    $(wildcard include/config/HIDRAW) \
+  include/uapi/linux/hidraw.h \
+  /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.h \
 
-/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o: $(deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o)
+/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o: $(deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o)
 
-$(deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o):
+$(deps_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o):
 
-/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/my_touchpad.o: $(wildcard ./tools/objtool/objtool)
+/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.o: $(wildcard ./tools/objtool/objtool)

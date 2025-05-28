@@ -1,4 +1,4 @@
-obj-m := my_touchpad.o
+obj-m += gestures.o
 
 KDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)

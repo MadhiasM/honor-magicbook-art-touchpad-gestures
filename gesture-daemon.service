@@ -1,0 +1,40 @@
+[Unit]
+Description=Touchpad Gesture Daemon
+Documentation=man:gesture-daemon(1)
+After=multi-user.target graphical-session.target
+Wants=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/gesture-daemon
+Restart=always
+RestartSec=5
+User=root
+Group=input
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=gesture-daemon
+
+# Security hardening
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=no
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Device access permissions
+DeviceAllow=/dev/hidraw1 r
+DeviceAllow=/dev/uinput rw
+DevicePolicy=closed
+
+# File system access
+ReadWritePaths=/dev/uinput
+ReadOnlyPaths=/dev/hidraw1
+
+[Install]
+WantedBy=multi-user.target
