@@ -38,5 +38,10 @@ DevicePolicy=closed
 ReadWritePaths=/dev/uinput
 ReadOnlyPaths=/dev/hidraw1
 
+# Faster shutdown settings
+TimeoutStopSec=1          # Kill after 1 second instead of default 90, this is due to blocking nature of read(), which will prevent both booting and stopping the service until a touchpad input is registered and unblocking the read() due to data going to the buffer
+KillMode=mixed            # Send SIGTERM, then SIGKILL if needed
+SendSIGKILL=yes          # Force kill if graceful shutdown fails
+
 [Install]
 WantedBy=multi-user.target
