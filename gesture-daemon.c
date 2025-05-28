@@ -1,3 +1,4 @@
+#include <linux/input-event-codes.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,24 +21,28 @@ void handle_sigint(int sig) {
 }
 
 // send key press via uinput
-void send_key(int ufd, int keycode) {
-    struct input_event ev;
-
-    memset(&ev, 0, sizeof(ev));
-    ev.type = EV_KEY;
-    ev.code = keycode;
-    ev.value = 1;
-    write(ufd, &ev, sizeof(ev));
-
-    ev.value = 0;
-    write(ufd, &ev, sizeof(ev));
-
-    // sync
-    ev.type = EV_SYN;
-    ev.code = SYN_REPORT;
-    ev.value = 0;
+void emit(int ufd, __u16 type, __u16 code, int value) {
+    struct input_event ev = {0};
+    ev.type = type;
+    ev.code = code;
+    ev.value = value;
     write(ufd, &ev, sizeof(ev));
 }
+
+void send_key(int ufd, int keycode) {
+    emit(ufd, EV_KEY, keycode, 1);
+    emit(ufd, EV_KEY, keycode, 0);
+    emit(ufd, EV_SYN, SYN_REPORT, 0);
+}
+
+void send_key_combo(int ufd, int modifier, int key) {
+    emit(ufd, EV_KEY, modifier, 1);
+    emit(ufd, EV_KEY, key, 1);
+    emit(ufd, EV_KEY, key, 0);
+    emit(ufd, EV_KEY, modifier, 0);
+    emit(ufd, EV_SYN, SYN_REPORT, 0);
+}
+
 
 int setup_uinput_device() {
     int ufd = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
@@ -51,9 +56,11 @@ int setup_uinput_device() {
     ioctl(ufd, UI_SET_KEYBIT, KEY_BRIGHTNESSDOWN);
     ioctl(ufd, UI_SET_KEYBIT, KEY_VOLUMEUP);
     ioctl(ufd, UI_SET_KEYBIT, KEY_VOLUMEDOWN);
-    //ioctl(ufd, UI_SET_KEYBIT, KEY_MINIMIZE);        // Minimize window, does not work
-    ioctl(ufd, UI_SET_KEYBIT, KEY_CLOSE);           // Close window
-    ioctl(ufd, UI_SET_KEYBIT, KEY_SCREENLOCK);      // KEY_SCREENLOCK (lock screen) KEY_CAMERA (screenshot), since notification panel is not straightforward
+    ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTALT);
+    ioctl(ufd, UI_SET_KEYBIT, KEY_F4);
+    ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTMETA);
+    ioctl(ufd, UI_SET_KEYBIT, KEY_H);
+    ioctl(ufd, UI_SET_KEYBIT, KEY_V);
 
     struct uinput_user_dev uidev = {0};
     snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "gesture-uinput");
@@ -113,10 +120,13 @@ int main() {
                     syslog(LOG_DEBUG, "Volume up gesture detected");
                 }
             } else if (buf[1] == 0x0a && buf[2] == 0x03) {
-                send_key(ufd, KEY_SCREENLOCK);
+                send_key_combo(ufd, KEY_LEFTMETA, KEY_V);
                 syslog(LOG_DEBUG, "Notification panel gesture detected");
+            } else if (buf[1] == 0x08) {
+                send_key_combo(ufd, KEY_LEFTMETA, KEY_H);
+                syslog(LOG_DEBUG, "Minimize window gesture detected");
             } else if (buf[1] == 0x09) {
-                send_key(ufd, KEY_CLOSE);
+                send_key_combo(ufd, KEY_LEFTALT, KEY_F4);
                 syslog(LOG_DEBUG, "Close window gesture detected");
             }
         }
