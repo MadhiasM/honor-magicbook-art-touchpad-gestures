@@ -1,1 +1,0 @@
-savedcmd_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/V2/modules.order := {   echo /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/V2/touchpad_gestures.o; :; } > /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/V2/modules.order

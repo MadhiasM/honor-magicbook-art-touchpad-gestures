@@ -1,1 +1,0 @@
-savedcmd_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/V2/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/V2/Module.symvers -T /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/V2/modules.order -i Module.symvers -e 

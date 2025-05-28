@@ -1,1 +1,0 @@
-savedcmd_/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.mod := printf '%s\n'   gestures.o | awk '!x[$$0]++ { print("/home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/"$$0) }' > /home/mathias/Dokumente/Code/honor-magicbook-art-touchpad-gestures/gestures.mod
