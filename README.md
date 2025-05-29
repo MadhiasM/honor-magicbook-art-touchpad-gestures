@@ -17,7 +17,7 @@ Click on top left of touchpad
 Click on top right of touchpad
 
 ## Adjustments
-Before deploying the service in linux, make sure the gesture you want to use are enabled in **Windows**. This is due to the fact that the configuration of enabled gestures is stored on the touchpad firmware itself. Changing these settings can only be done in Windows at the moment.
+Before deploying the service in linux, make sure the gesture you want to use are enabled in **Windows** using Honor PC Manager. This is due to the fact that the configuration of enabled gestures is stored on the touchpad firmware itself. Changing these settings can only be done in Windows at the moment.
 
 Depending on your distro, you might need to adjust some of the key combos for closing/minimizing windows and opening the notification panel. Current implementation for closing window:
 ```c
