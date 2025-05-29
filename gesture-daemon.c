@@ -63,7 +63,7 @@ int setup_uinput_device() {
     ioctl(ufd, UI_SET_KEYBIT, KEY_V);
 
     struct uinput_user_dev uidev = {0};
-    snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "gesture-uinput");
+    snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "TOPS0102:00 35CC:0104 Gesture Control");
     uidev.id.bustype = BUS_USB; // TODO: Check if USB is correct, since it is i2c
     uidev.id.vendor  = 0x1234; // TODO: Check if real touchpad vendor and product ID should be used
     uidev.id.product = 0x5678; // TODO: Check if real touchpad vendor and product ID should be used
