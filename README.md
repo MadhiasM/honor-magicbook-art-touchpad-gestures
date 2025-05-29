@@ -151,3 +151,11 @@ Event: time 1748509905.651356, type 1 (EV_KEY), code 62 (KEY_F4), value 0
 Event: time 1748509905.651356, type 1 (EV_KEY), code 56 (KEY_LEFTALT), value 0
 Event: time 1748509905.651356, -------------- SYN_REPORT ------------
 ``
+To probe your Touchpads raw output, use
+```bash
+sudo cat /dev/hidraw1 | hexdump -C
+```
+and output will show like this (for example for knocking gesture):
+```
+00000000  0e 06 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+```
