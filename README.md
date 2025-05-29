@@ -59,6 +59,10 @@ sudo systemctl start gesture-daemon
 
 # Check service status
 sudo systemctl status gesture-daemon
+
+# Check service events for Gesture control
+sudo evtest
+
 ```
 
 Your gesture service should now be running as a proper systemd service with logging and automatic startup
