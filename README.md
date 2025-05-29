@@ -16,6 +16,11 @@ Click on top left of touchpad
 ### Close Window
 Click on top right of touchpad
 
+### Screenshot Menu
+Knock twice with one knuckle
+### Instant Screenshot
+Knock twice with two knuckles
+
 ## Adjustments
 Before deploying the service in linux, make sure the gesture you want to use are enabled in **Windows** using Honor PC Manager. This is due to the fact that the configuration of enabled gestures is stored on the touchpad firmware itself. Changing these settings can only be done in Windows at the moment.
 
