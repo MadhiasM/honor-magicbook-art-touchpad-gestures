@@ -6,8 +6,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <linux/uinput.h>
-#include <linux/hidraw.h>      // ← ADD THIS
-#include <linux/hid.h>         // ← ADD THIS
+#include <linux/hidraw.h>
+#include <linux/hid.h>
 #include <signal.h>
 #include <errno.h>
 #include <syslog.h>
