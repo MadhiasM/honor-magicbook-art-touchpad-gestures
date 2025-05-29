@@ -16,6 +16,7 @@ Click on top left of touchpad
 ### Close Window
 Click on top right of touchpad
 
+## Adjustments
 Depending on your distro, you might need to adjust some of the key combos for closing/minimizing windows and opening the notification panel. Current implementation for closing window:
 ```c
 ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTALT);
@@ -37,7 +38,7 @@ git clone https://github.com/MadhiasM/honor-magicbook-art-touchpad-gestures
 gcc -o gesture-daemon gesture-daemon.c
 ```
 
-## 3: Deploy service
+### 3: Deploy service
 
 ```bash
 # Copy service to system location and make executable
