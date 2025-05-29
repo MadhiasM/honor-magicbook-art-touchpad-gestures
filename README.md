@@ -68,22 +68,23 @@ sudo evtest
 Your gesture service should now be running as a proper systemd service with logging and automatic startup
 
 ## Monitoring
-After 5 minutes of usage, it only used the CPU for 56 ms and takes up 272 kB of memory:
+After 5 minutes of usage, it only used the CPU for <50 ms and takes up <300 kB of memory:
 ```
 ● gesture-daemon.service - Touchpad Gesture Daemon
      Loaded: loaded (/etc/systemd/system/gesture-daemon.service; enabled; vendor preset: enabled)
-     Active: active (running) since Thu 2025-05-29 11:05:19 CEST; 5min ago
+     Active: active (running) since Thu 2025-05-29 12:13:32 CEST; 5min ago
        Docs: man:gesture-daemon(1)
-   Main PID: 4714 (gesture-daemon)
+   Main PID: 9389 (gesture-daemon)
       Tasks: 1 (limit: 18336)
-     Memory: 272.0K
-        CPU: 56ms
+     Memory: 280.0K
+        CPU: 39ms
      CGroup: /system.slice/gesture-daemon.service
-             └─4714 /usr/local/bin/gesture-daemon
+             └─9389 /usr/local/bin/gesture-daemon
 
-Mai 29 11:05:19 MRA-XXX systemd[1]: Started Touchpad Gesture Daemon.
-Mai 29 11:05:19 MRA-XXX gesture-service[4714]: Starting gesture service
-Mai 29 11:05:19 MRA-XXX gesture-service[4714]: Gesture control device created successfully
+Mai 29 12:13:32 MRA-XXX systemd[1]: Started Touchpad Gesture Daemon.
+Mai 29 12:13:32 MRA-XXX gesture-service[9389]: Starting gesture service
+Mai 29 12:13:32 MRA-XXX gesture-service[9389]: Found touchpad: /dev/hidraw1
+Mai 29 12:13:32 MRA-XXX gesture-service[9389]: Gesture control device created successfully
 ```
 
 Events visible like this:
