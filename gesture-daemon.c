@@ -6,12 +6,15 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <linux/uinput.h>
+#include <linux/hidraw.h>      // ← ADD THIS
+#include <linux/hid.h>         // ← ADD THIS
 #include <signal.h>
 #include <errno.h>
 #include <syslog.h>
 #include <sys/stat.h>
 
-#define DEVICE "/dev/hidraw1"
+#define TARGET_VENDOR  0x35CC
+#define TARGET_PRODUCT 0x0104
 
 volatile int keep_running = 1;
 
@@ -43,6 +46,30 @@ void send_key_combo(int ufd, int modifier, int key) {
     emit(ufd, EV_SYN, SYN_REPORT, 0);
 }
 
+// Auto-detection function
+char* find_touchpad_hidraw() {
+    static char device_path[64];
+
+    for (int i = 0; i < 64; i++) {
+        snprintf(device_path, sizeof(device_path), "/dev/hidraw%d", i);
+
+        int fd = open(device_path, O_RDONLY | O_NONBLOCK);
+        if (fd < 0) continue;
+
+        struct hidraw_devinfo info;
+        if (ioctl(fd, HIDIOCGRAWINFO, &info) == 0) {
+            if (info.vendor == TARGET_VENDOR && info.product == TARGET_PRODUCT) {
+                close(fd);
+                syslog(LOG_INFO, "Found touchpad: %s", device_path);
+                return device_path;
+            }
+        }
+        close(fd);
+    }
+
+    syslog(LOG_ERR, "Touchpad hidraw device not found");
+    return NULL;
+}
 
 int setup_uinput_device() {
     int ufd = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
@@ -85,10 +112,17 @@ int main() {
     signal(SIGINT, handle_sigint);
     signal(SIGTERM, handle_sigint);
 
+    // Auto-detect touchpad
+    char *device_path = find_touchpad_hidraw();
+    if (!device_path) {
+        syslog(LOG_ERR, "Failed to find touchpad");
+        return 1;
+    }
+
     // Open HID device
-    int hid = open(DEVICE, O_RDONLY);
+    int hid = open(device_path, O_RDONLY);
     if (hid < 0) {
-        syslog(LOG_ERR, "Failed to open %s: %s", DEVICE, strerror(errno));
+        syslog(LOG_ERR, "Failed to open %s: %s", device_path, strerror(errno));
         return 1;
     }
 
