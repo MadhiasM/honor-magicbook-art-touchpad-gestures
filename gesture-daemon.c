@@ -13,7 +13,7 @@
 
 #define DEVICE "/dev/hidraw1"
 
-volatile int keep_running = 1; // TODO: Check why not use while(1)
+volatile int keep_running = 1;
 
 void handle_sigint(int sig) {
     syslog(LOG_INFO, "Received signal %d, shutting down gracefully", sig);
@@ -83,8 +83,8 @@ int main() {
     syslog(LOG_INFO, "Starting gesture service");
 
     // Set up signal handlers
-    signal(SIGINT, handle_sigint); // TODO: check why it is needed
-    signal(SIGTERM, handle_sigint); // TODO: check why it is needed
+    signal(SIGINT, handle_sigint);
+    signal(SIGTERM, handle_sigint);
 
     // Open HID device
     int hid = open(DEVICE, O_RDONLY);
