@@ -68,7 +68,7 @@ sudo evtest
 Your gesture service should now be running as a proper systemd service with logging and automatic startup
 
 ## Monitoring
-After 5 minutes of usage, it only used the CPU for <50 ms and takes up <300 kB of memory:
+After 5 minutes of usage, it only used the CPU for <50 ms and takes up <300 kB of memory, as per systemctl status:
 ```
 ● gesture-daemon.service - Touchpad Gesture Daemon
      Loaded: loaded (/etc/systemd/system/gesture-daemon.service; enabled; vendor preset: enabled)
@@ -87,9 +87,8 @@ Mai 29 12:13:32 MRA-XXX gesture-service[9389]: Found touchpad: /dev/hidraw1
 Mai 29 12:13:32 MRA-XXX gesture-service[9389]: Gesture control device created successfully
 ```
 
-Events visible like this:
+Events visible like this, as per evtest:
 ```
-mathias@mathias-MRA-XXX:~/Dokumente/Code/honor-magicbook-art-touchpad-gestures$ sudo evtest
 No device specified, trying to scan all of /dev/input/event*
 Available devices:
 /dev/input/event0:	Lid Switch
