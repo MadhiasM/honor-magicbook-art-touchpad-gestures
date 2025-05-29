@@ -85,9 +85,10 @@ int setup_uinput_device() {
     ioctl(ufd, UI_SET_KEYBIT, KEY_VOLUMEDOWN);
     ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTALT);
     ioctl(ufd, UI_SET_KEYBIT, KEY_F4);
-    ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTMETA);
+    ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTMETA); // Super / Windows Key
     ioctl(ufd, UI_SET_KEYBIT, KEY_H);
     ioctl(ufd, UI_SET_KEYBIT, KEY_V);
+    ioctl(ufd, UI_SET_KEYBIT, KEY_SYSRQ); // Print key for screenshot
 
     struct uinput_user_dev uidev = {0};
     snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "TOPS0102:00 35CC:0104 Gesture Control");
@@ -155,6 +156,9 @@ int main() {
             } else if (buf[1] == 0x0a && buf[2] == 0x03) {
                 send_key_combo(ufd, KEY_LEFTMETA, KEY_V);
                 syslog(LOG_DEBUG, "Notification panel gesture detected");
+            } else if (buf[1] == 0x06) {
+                send_key(ufd, KEY_SYSRQ);
+                syslog(LOG_DEBUG, "Minimize window gesture detected");
             } else if (buf[1] == 0x08) {
                 send_key_combo(ufd, KEY_LEFTMETA, KEY_H);
                 syslog(LOG_DEBUG, "Minimize window gesture detected");
