@@ -88,6 +88,7 @@ int setup_uinput_device() {
     ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTMETA); // Super / Windows Key
     ioctl(ufd, UI_SET_KEYBIT, KEY_H);
     ioctl(ufd, UI_SET_KEYBIT, KEY_V);
+    ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTSHIFT);
     ioctl(ufd, UI_SET_KEYBIT, KEY_SYSRQ); // Print key for screenshot
 
     struct uinput_user_dev uidev = {0};
@@ -158,6 +159,9 @@ int main() {
                 syslog(LOG_DEBUG, "Notification panel gesture detected");
             } else if (buf[1] == 0x06) {
                 send_key(ufd, KEY_SYSRQ);
+                syslog(LOG_DEBUG, "Minimize window gesture detected");
+            } else if (buf[1] == 0x07) {
+                send_key_combo(ufd, KEY_LEFTSHIFT, KEY_SYSRQ); // Direct screenshot. Screen capture would need triple combo Shift+Strg+Alt+R in Zorin OS
                 syslog(LOG_DEBUG, "Minimize window gesture detected");
             } else if (buf[1] == 0x08) {
                 send_key_combo(ufd, KEY_LEFTMETA, KEY_H);
