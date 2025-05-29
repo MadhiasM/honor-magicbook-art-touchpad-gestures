@@ -64,7 +64,7 @@ int setup_uinput_device() {
 
     struct uinput_user_dev uidev = {0};
     snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "TOPS0102:00 35CC:0104 Gesture Control");
-    uidev.id.bustype = BUS_USB; // TODO: Check if USB is correct, since it is i2c
+    uidev.id.bustype = BUS_I2C;
     uidev.id.vendor  = 0x35CC;
     uidev.id.product = 0x0104;
     uidev.id.version = 1;
