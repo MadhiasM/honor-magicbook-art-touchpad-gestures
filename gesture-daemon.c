@@ -72,8 +72,7 @@ int setup_uinput_device() {
     write(ufd, &uidev, sizeof(uidev));
     ioctl(ufd, UI_DEV_CREATE);
 
-    sleep(1); // give the system time to recognize device
-    syslog(LOG_INFO, "uinput device created successfully");
+    syslog(LOG_INFO, "Gesture control device created successfully");
     return ufd;
 }
 
