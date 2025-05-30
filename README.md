@@ -21,6 +21,10 @@ Knock twice with one knuckle
 ### Instant Screenshot
 Knock twice with two knuckles
 
+### Drag & drop
+Three finger swipe
+*when enabled in windows, will work even without the service, but can have some weird side effects, hence recommended to disable*
+
 ## Adjustments
 Before deploying the service in linux, make sure the gesture you want to use are enabled in **Windows** using Honor PC Manager. This is due to the fact that the configuration of enabled gestures is stored on the touchpad firmware itself. Changing these settings can only be done in Windows at the moment.
 
