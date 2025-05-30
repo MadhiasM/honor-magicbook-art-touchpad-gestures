@@ -166,3 +166,10 @@ and output will show like this (for example for knocking gesture):
 ```
 00000000  0e 06 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 ```
+
+## TODO
+- Find better solution for blocking nature of `read()` of raw HID data
+- Abstract `send_key()` and `send_combo()` into one variadic function that can handle an arbitrary amount of keys
+- Find better solution for doing distro-specific actions such as minimize, close, open notification panel
+- Reverse-engineer changing the settings of the touchpad in Windows for enabling and disabling each gesture
+- Create GUI for changing the touchpad settings and distro-specific shortcuts
