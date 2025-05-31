@@ -38,7 +38,10 @@ ioctl(ufd, UI_SET_KEYBIT, KEY_F4);
 
 ## Installation
 ### Install .deb Package
-Download and install .deb Package from Release through you package installer or terminal using `sudo dpkg -i gesture-daemon_1.0-1.deb`
+Download and install .deb Package from Release through you package installer or terminal
+```
+sudo dpkg -i gesture-daemon_1.0-1.deb
+```
 
 ### Build .deb Package
 If necessary, make script executable
