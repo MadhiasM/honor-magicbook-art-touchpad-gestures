@@ -37,19 +37,27 @@ ioctl(ufd, UI_SET_KEYBIT, KEY_F4);
 ```
 
 ## Installation
-### 1: Clone repo
+### Install .deb Package
+Download and install .deb Package from Release
+
+### Build .deb Package
+If necessary, run `chmod +x scripts/build-deb.sh` to make Script executable
+Run `./scripts/build-deb.sh`
+Install .deb Package in dist/
+### Manually deploy service
+#### 1: Clone repo
 ```bash
 git clone https://github.com/MadhiasM/honor-magicbook-art-touchpad-gestures
 ```
 
-### 2: Compile service
+#### 2: Compile service
 
 ```bash
 # Compile service
 gcc -o gesture-daemon gesture-daemon.c
 ```
 
-### 3: Deploy service
+#### 3: Deploy service
 
 ```bash
 # Copy service to system location and make executable

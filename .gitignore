@@ -1,1 +1,4 @@
-.old/
+gesture-daemon
+build-deb/usr/local/bin/gesture-daemon
+dist/
+*.deb
