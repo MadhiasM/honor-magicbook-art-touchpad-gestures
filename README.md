@@ -44,6 +44,7 @@ Download and install .deb Package from Release
 If necessary, run `chmod +x scripts/build-deb.sh` to make Script executable
 Run `./scripts/build-deb.sh`
 Install .deb Package in dist/
+
 ### Manually deploy service
 #### 1: Clone repo
 ```bash
