@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+systemctl stop gesture-daemon.service || true
+systemctl disable gesture-daemon.service || true
+systemctl daemon-reload || true
+
+exit 0
+

@@ -1,0 +1,12 @@
+Package: gesture-daemon
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: MadhiasM
+Homepage: https://github.com/MadhiasM/honor-magicbook-art-touchpad-gestures
+Description: Touchpad gesture daemon for Honor Magicbook Art 14
+ A background service that listens for touchpad gestures and triggers
+ system actions like adjusting brightness, volume, and window management.
+ Designed for the Honor Magicbook Art 14
+License: GPL-3+

@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+# Set executable permission (falls nötig)
+chmod +x /usr/local/bin/gesture-daemon
+
+# Systemd Service einrichten
+systemctl daemon-reexec || true
+systemctl daemon-reload || true
+systemctl enable gesture-daemon.service || true
+systemctl start gesture-daemon.service || true
+
+exit 0
+
