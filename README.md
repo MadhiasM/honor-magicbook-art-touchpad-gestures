@@ -41,9 +41,15 @@ ioctl(ufd, UI_SET_KEYBIT, KEY_F4);
 Download and install .deb Package from Release through you package installer or terminal using `sudo dpkg -i gesture-daemon_1.0-1.deb`
 
 ### Build .deb Package
-If necessary, run `chmod +x scripts/build-deb.sh` to make Script executable
-Run `./scripts/build-deb.sh`
-Install .deb Package in dist/
+If necessary, make script executable
+```
+chmod +x scripts/build-deb.sh
+```
+Run install script
+```
+./scripts/build-deb.sh
+```
+Install .deb Package from dist/
 
 ### Manually deploy service
 #### 1: Clone repo
