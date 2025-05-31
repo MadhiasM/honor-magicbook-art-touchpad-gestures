@@ -191,7 +191,6 @@ and output will show like this (for example for knocking gesture):
 
 ## TODO
 - Find better solution for blocking nature of `read()` of raw HID data
-- Abstract `send_key()` and `send_combo()` into one variadic function that can handle an arbitrary amount of keys
 - Find better solution for doing distro-specific actions such as minimize, close, open notification panel
 - Find better solution for combo gestures, since they can result in letters being output if there is no use for the gesture (i.e. letter h will be put on the search window in the app drawer when using the minimze gesture, since there is nothing to minimize and the gesture executes ctrl+h)
 - Reverse-engineer changing the settings of the touchpad in Windows for enabling and disabling each gesture
