@@ -177,3 +177,4 @@ and output will show like this (for example for knocking gesture):
 - Find better solution for doing distro-specific actions such as minimize, close, open notification panel
 - Reverse-engineer changing the settings of the touchpad in Windows for enabling and disabling each gesture
 - Create GUI for changing the touchpad settings and distro-specific shortcuts
+- Create Debian Package for convenient deployment
