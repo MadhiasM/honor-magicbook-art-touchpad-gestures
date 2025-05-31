@@ -64,7 +64,7 @@ git clone https://github.com/MadhiasM/honor-magicbook-art-touchpad-gestures
 
 ```bash
 # Compile service
-gcc -o gesture-daemon gesture-daemon.c
+gcc -o gesture-daemon src/gesture-daemon.c
 ```
 
 #### 3: Deploy service
