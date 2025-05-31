@@ -1,4 +1,5 @@
 #include <linux/input-event-codes.h>
+#include <stdarg.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,19 +33,32 @@ void emit(int ufd, __u16 type, __u16 code, int value) {
     write(ufd, &ev, sizeof(ev));
 }
 
-void send_key(int ufd, int keycode) {
-    emit(ufd, EV_KEY, keycode, 1);
-    emit(ufd, EV_KEY, keycode, 0);
+void send_key_combination(int ufd, int n, ...) {
+    va_list keys;
+    va_start(keys, n);
+
+    for (int i = 0; i < n; i++) {
+        emit(ufd, EV_KEY, va_arg(keys, int), 1);
+    }
     emit(ufd, EV_SYN, SYN_REPORT, 0);
+
+    va_start(keys, n);
+    for (int i = n - 1; i >= 0; i--) {
+        emit(ufd, EV_KEY, va_arg(keys, int), 0);
+    }
+    emit(ufd, EV_SYN, SYN_REPORT, 0);
+    va_end(keys);
+
+}
+
+void send_key(int ufd, int key) {
+    send_key_combination(ufd, 1, key);
 }
 
 void send_key_combo(int ufd, int modifier, int key) {
-    emit(ufd, EV_KEY, modifier, 1);
-    emit(ufd, EV_KEY, key, 1);
-    emit(ufd, EV_KEY, key, 0);
-    emit(ufd, EV_KEY, modifier, 0);
-    emit(ufd, EV_SYN, SYN_REPORT, 0);
+    send_key_combination(ufd, 2, modifier, key);
 }
+
 
 // Auto-detection function
 char* find_touchpad_hidraw() {
