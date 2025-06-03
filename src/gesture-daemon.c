@@ -14,6 +14,18 @@
 #define TARGET_VENDOR  0x35CC
 #define TARGET_PRODUCT 0x0104
 
+#define GESTURE_IDENTIFIER 0x0e
+#define SWIPE_VERTICAL_LEFT_EDGE 0x03
+#define SWIPE_VERTICAL_RIGHT_EDGE 0x04
+#define SWIPE_UP 0x01
+#define SWIPE_DOWN 0x02
+#define SWIPE_HORIZONTAL_TWO_FINGERS_EDGE 0x0a
+#define SWIPE_LEFT 0x03
+#define KNOCK_DOUBLE_ONE_KNUCKLE 0x06
+#define KNOCK_DOUBLE_TWO_KNUCKLES 0x07
+#define CLICK_TOP_LEFT 0x08
+#define CLICK_TOP_RIGHT 0x09
+
 volatile int keep_running = 1;
 
 void handle_sigint(int sig) {
@@ -148,36 +160,36 @@ int main() {
         int n = read(hid, buf, sizeof(buf));
         if (n < 3) continue;
 
-        if (buf[0] == 0x0e) {
-            if (buf[1] == 0x03) {
-                if (buf[2] == 0x02) {
-                    send_key(ufd, KEY_BRIGHTNESSDOWN);
-                        syslog(LOG_DEBUG, "Left side swipe down gesture detected");
-                } else if (buf[2] == 0x01) {
+        if (buf[0] == GESTURE_IDENTIFIER) {
+            if (buf[1] == SWIPE_VERTICAL_LEFT_EDGE) {
+                if (buf[2] == SWIPE_UP) {
                     send_key(ufd, KEY_BRIGHTNESSUP);
                     syslog(LOG_DEBUG, "Left side swipe up gesture detected");
+                } else if (buf[2] == SWIPE_DOWN) {
+                    send_key(ufd, KEY_BRIGHTNESSDOWN);
+                        syslog(LOG_DEBUG, "Left side swipe down gesture detected");
                 }
-            } else if (buf[1] == 0x04) {
-                if (buf[2] == 0x02) {
-                    send_key(ufd, KEY_VOLUMEDOWN);
-                    syslog(LOG_DEBUG, "Right side swipe down gesture detected");
-                } else if (buf[2] == 0x01) {
+            } else if (buf[1] == SWIPE_VERTICAL_RIGHT_EDGE) {
+                if (buf[2] == SWIPE_UP) {
                     send_key(ufd, KEY_VOLUMEUP);
                     syslog(LOG_DEBUG, "Right side swipe up gesture detected");
+                } else if (buf[2] == SWIPE_DOWN) {
+                    send_key(ufd, KEY_VOLUMEDOWN);
+                    syslog(LOG_DEBUG, "Right side swipe down gesture detected");
                 }
-            } else if (buf[1] == 0x0a && buf[2] == 0x03) {
+            } else if (buf[1] == SWIPE_HORIZONTAL_TWO_FINGERS_EDGE && buf[2] == SWIPE_LEFT) {
                 send_key_combo(ufd, KEY_LEFTMETA, KEY_V);
                 syslog(LOG_DEBUG, "Two-finger swipe left from edge gesture detected");
-            } else if (buf[1] == 0x06) {
+            } else if (buf[1] == KNOCK_DOUBLE_ONE_KNUCKLE) {
                 send_key(ufd, KEY_SYSRQ);
                 syslog(LOG_DEBUG, "One-knuckle double knock gesture detected");
-            } else if (buf[1] == 0x07) {
+            } else if (buf[1] == KNOCK_DOUBLE_TWO_KNUCKLES) {
                 send_key_combo(ufd, KEY_LEFTSHIFT, KEY_SYSRQ); // Direct screenshot. Screen capture would need triple combo Shift+Strg+Alt+R in Zorin OS. Anyhow, it is possible to do it from single knuckle double knock through GUI.
                 syslog(LOG_DEBUG, "Two-knuckle double knock gesture detected");
-            } else if (buf[1] == 0x08) {
+            } else if (buf[1] == CLICK_TOP_LEFT) {
                 send_key_combo(ufd, KEY_LEFTMETA, KEY_H);
                 syslog(LOG_DEBUG, "Minimize window gesture detected");
-            } else if (buf[1] == 0x09) {
+            } else if (buf[1] == CLICK_TOP_RIGHT) {
                 send_key_combo(ufd, KEY_LEFTALT, KEY_F4);
                 syslog(LOG_DEBUG, "Close window gesture detected");
             }
