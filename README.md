@@ -44,12 +44,18 @@ sudo dpkg -i gesture-daemon_1.0-1.deb
 ```
 
 ### Build .deb Package
-If necessary, make script executable
+If necessary, set version as tag in github
+```bash
+git tag -a "1.0.1" -m "version 1.0.1"
 ```
+Replace 1.0.1 with your version
+
+If necessary, make script executable
+```bash
 chmod +x scripts/build-deb.sh
 ```
 Run install script
-```
+```bash
 ./scripts/build-deb.sh
 ```
 Install .deb Package from dist/
@@ -63,7 +69,6 @@ git clone https://github.com/MadhiasM/honor-magicbook-art-touchpad-gestures
 #### 2: Compile service
 
 ```bash
-# Compile service
 gcc -o gesture-daemon src/gesture-daemon.c
 ```
 
@@ -91,7 +96,6 @@ sudo systemctl status gesture-daemon
 
 # Check service events for Gesture control
 sudo evtest
-
 ```
 
 Your gesture service should now be running as a proper systemd service with logging and automatic startup

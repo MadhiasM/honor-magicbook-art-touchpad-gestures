@@ -1,4 +1,4 @@
 gesture-daemon
-build-deb/usr/local/bin/gesture-daemon
+build-deb/gesture-daemon/usr/local/bin/gesture-daemon
 dist/
 *.deb
