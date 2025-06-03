@@ -199,3 +199,21 @@ and output will show like this (for example for knocking gesture):
 - Find better solution for combo gestures, since they can result in letters being output if there is no use for the gesture (i.e. letter h will be put on the search window in the app drawer when using the minimze gesture, since there is nothing to minimize and the gesture executes ctrl+h)
 - Reverse-engineer changing the settings of the touchpad in Windows for enabling and disabling each gesture
 - Create GUI for changing the touchpad settings and distro-specific shortcuts
+
+## Additional information
+To enable the print key on Honor Magicbook Art 14, do the following:
+```bash
+sudo nano /etc/udev/hwdb.d/90-custom-keyboard.hwdb
+```
+Paste the following:
+```bash
+evdev:input:b*
+ NAME="AT Translated Set 2 keyboard"
+ KEYBOARD_KEY_f7=sysrq
+```
+Refresh inputs:
+```bash
+sudo systemd-hwdb update
+sudo udevadm trigger
+udevadm info /dev/input/event2  # event2 should be the keyboard, can be verified via sudo evtest
+```
