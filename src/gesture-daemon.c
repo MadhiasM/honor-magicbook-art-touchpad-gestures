@@ -1,6 +1,9 @@
 #include <linux/input-event-codes.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <linux/uinput.h>
@@ -10,6 +13,7 @@
 #include <errno.h>
 #include <syslog.h>
 #include <sys/stat.h>
+
 
 #define TARGET_VENDOR  0x35CC
 #define TARGET_PRODUCT 0x0104
