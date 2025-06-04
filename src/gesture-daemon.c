@@ -114,9 +114,9 @@ int setup_uinput_device() {
     ioctl(ufd, UI_SET_KEYBIT, KEY_F4);
     ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTMETA); // Super / Windows Key
     ioctl(ufd, UI_SET_KEYBIT, KEY_H);
-    ioctl(ufd, UI_SET_KEYBIT, KEY_V);
+    ioctl(ufd, UI_SET_KEYBIT, KEY_V); // Super + V for Notification, since KEY_NOTIFICATION_CENTER does not work.
     ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTSHIFT);
-    ioctl(ufd, UI_SET_KEYBIT, KEY_SYSRQ); // Print key for screenshot
+    ioctl(ufd, UI_SET_KEYBIT, KEY_SYSRQ); // Print key for screenshot, KEY_PRINT or KEY_SELECTIVE_SCREENSHOT do not work.
 
     struct uinput_user_dev uidev = {0};
     snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "TOPS0102:00 35CC:0104 Gesture Control");
