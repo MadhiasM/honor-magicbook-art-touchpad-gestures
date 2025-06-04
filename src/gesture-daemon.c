@@ -116,7 +116,7 @@ int setup_uinput_device() {
     ioctl(ufd, UI_SET_KEYBIT, KEY_H);
     ioctl(ufd, UI_SET_KEYBIT, KEY_V); // Super + V for Notification, since KEY_NOTIFICATION_CENTER does not work.
     ioctl(ufd, UI_SET_KEYBIT, KEY_LEFTSHIFT);
-    ioctl(ufd, UI_SET_KEYBIT, KEY_SYSRQ); // Print key for screenshot, KEY_PRINT or KEY_SELECTIVE_SCREENSHOT do not work.
+    ioctl(ufd, UI_SET_KEYBIT, KEY_PRINT); // Print key for screenshot, sometimes, KEY_PRINT or KEY_SELECTIVE_SCREENSHOT do not work. In that case use KEY_SYSRQ
 
     struct uinput_user_dev uidev = {0};
     snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "TOPS0102:00 35CC:0104 Gesture Control");
@@ -185,10 +185,10 @@ int main() {
                 send_key_combo(ufd, KEY_LEFTMETA, KEY_V);
                 //syslog(LOG_DEBUG, "Two-finger swipe left from edge gesture detected");
             } else if (buf[1] == KNOCK_DOUBLE_ONE_KNUCKLE) {
-                send_key(ufd, KEY_SYSRQ);
+                send_key(ufd, KEY_PRINT);
                 //syslog(LOG_DEBUG, "One-knuckle double knock gesture detected");
             } else if (buf[1] == KNOCK_DOUBLE_TWO_KNUCKLES) {
-                send_key_combo(ufd, KEY_LEFTSHIFT, KEY_SYSRQ); // Direct screenshot. Screen capture would need triple combo Shift+Strg+Alt+R in Zorin OS. Anyhow, it is possible to do it from single knuckle double knock through GUI.
+                send_key_combo(ufd, KEY_LEFTSHIFT, KEY_PRINT); // Direct screenshot. Screen capture would need triple combo Shift+Strg+Alt+R in Zorin OS. Anyhow, it is possible to do it from single knuckle double knock through GUI.
                 //syslog(LOG_DEBUG, "Two-knuckle double knock gesture detected");
             } else if (buf[1] == CLICK_TOP_LEFT) {
                 send_key_combo(ufd, KEY_LEFTMETA, KEY_H);
