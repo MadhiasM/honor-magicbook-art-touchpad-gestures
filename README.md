@@ -1,7 +1,7 @@
-# Honor Magicbook Art Touchpad Gestures
+# Honor Magicbook Art Touchpad Gestures (Linux)
 
 ## Content
-This will replicate the special gestures on the Honor Magicbook Art Touchpad
+This will replicate the special gestures from Windows on the Honor Magicbook Art Touchpad in Linux
 
 ### Brightness control
 Vertical Swipe on the left
