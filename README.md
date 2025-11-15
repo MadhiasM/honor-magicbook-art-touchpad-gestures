@@ -3,25 +3,27 @@
 ## Content
 This will replicate the special gestures from Windows on the Honor Magicbook Art Touchpad in Linux
 
-### Brightness control
+### Supported Gestures
+[Official Honor Windows Reference](https://www.youtube.com/watch?v=4kTlSlOQ8XY)
+#### Brightness control
 Vertical Swipe on the left
-### Volume control
+#### Volume control
 Vertical Swipe on the right
 
-### Notification panel
+#### Notification panel
 Two-finger swipe leftwards from the right edge
 
-### Minimize Window
+#### Minimize Window
 Click on top left of touchpad
-### Close Window
+#### Close Window
 Click on top right of touchpad
 
-### Screenshot Menu
+#### Screenshot Menu
 Knock twice with one knuckle
-### Instant Screenshot
+#### Instant Screenshot
 Knock twice with two knuckles
 
-### Drag & drop
+#### Drag & drop
 Three finger swipe
 *when enabled in windows, will work even without the service, but can have some weird side effects, hence recommended to disable*
 
