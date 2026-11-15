@@ -28,7 +28,7 @@ Three finger swipe
 *when enabled in windows, will work even without the service, but can have some weird side effects, hence recommended to disable*
 
 ## Adjustments
-Before deploying the service in linux, make sure the gesture you want to use are enabled in **Windows** using Honor PC Manager. This is due to the fact that the configuration of enabled gestures is stored on the touchpad firmware itself. Changing these settings can only be done in Windows at the moment.
+Before deploying the service in linux, make sure the gesture you want to use are enabled in **Windows** using Honor PC Manager. This is due to the fact that the configuration of enabled gestures is stored on the touchpad firmware itself. Changing these settings can be done using [https://github.com/ZachAR3/HonorControl](HonorControl) or in Windows.
 
 Depending on your distro, you might need to adjust some of the key combos for closing/minimizing windows and opening the notification panel. Current implementation for closing window:
 ```c
@@ -60,7 +60,14 @@ Run install script
 ```bash
 ./scripts/build-deb.sh
 ```
-Install .deb Package from dist/
+Install the generated package from `dist/`:
+
+```bash
+sudo dpkg -i dist/gesture-daemon_*.deb
+```
+
+This installs both `gesture-daemon` and `touchpadctl`. The package
+post-install script enables and starts the gesture service.
 
 ### Manually deploy service
 #### 1: Clone repo
@@ -72,17 +79,25 @@ git clone https://github.com/MadhiasM/honor-magicbook-art-touchpad-gestures
 
 ```bash
 gcc -o gesture-daemon src/gesture-daemon.c
+gcc -std=c11 -Wall -Wextra -Wpedantic \
+    src/touchpad-config.c src/touchpadctl.c -o touchpadctl
 ```
 
 #### 3: Deploy service
 
 ```bash
-# Copy service to system location and make executable
+# Stop the old service before replacing its executable
+sudo systemctl stop gesture-daemon 2>/dev/null || true
+
+# Copy binaries to system location and make executable
 sudo cp gesture-daemon /usr/local/bin/
 sudo chmod +x /usr/local/bin/gesture-daemon
+sudo cp touchpadctl /usr/local/bin/
+sudo chmod +x /usr/local/bin/touchpadctl
 
-# Copy service file to systemd directory
-sudo cp gesture-daemon.service /etc/systemd/system/
+# Copy the service file from its repository location
+sudo cp build-deb/gesture-daemon/lib/systemd/system/gesture-daemon.service \
+    /etc/systemd/system/
 
 # Reload systemd to recognize new service
 sudo systemctl daemon-reload
@@ -100,10 +115,9 @@ sudo systemctl status gesture-daemon
 sudo evtest
 ```
 
-Your gesture service should now be running as a proper systemd service with logging and automatic startup
-
 ## Monitoring
 After 5 minutes of usage, it only used the CPU for <50 ms and takes up <300 kB of memory, as per systemctl status:
+
 ```
 ● gesture-daemon.service - Touchpad Gesture Daemon
      Loaded: loaded (/etc/systemd/system/gesture-daemon.service; enabled; vendor preset: enabled)
@@ -121,6 +135,36 @@ Mai 29 12:13:32 MRA-XXX gesture-service[9389]: Starting gesture service
 Mai 29 12:13:32 MRA-XXX gesture-service[9389]: Found touchpad: /dev/hidraw1
 Mai 29 12:13:32 MRA-XXX gesture-service[9389]: Gesture control device created successfully
 ```
+
+## Touchpad settings
+
+The firmware settings use the same hidraw device as gesture detection, but
+send output reports instead of reading gesture reports. The standalone
+`touchpadctl` utility does not start or modify the gesture daemon.
+
+List supported settings:
+
+```bash
+touchpadctl list
+```
+
+Set a boolean setting with `0` or `1`:
+
+```bash
+sudo touchpadctl set sensitivity 1
+sudo touchpadctl set edge_brightness 1
+```
+
+Set vibration intensity with `0` (low), `1` (medium), or `2` (high):
+
+```bash
+sudo touchpadctl set vibration_intensity 2
+```
+
+The utility sends nine-byte reports of the form
+`0e command value 00 00 00 00 00 00`. The firmware does not provide
+readback for these settings, so a successful write only confirms that the
+kernel accepted the report.
 
 Events visible like this, as per evtest:
 ```
