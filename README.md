@@ -164,7 +164,8 @@ sudo touchpadctl set vibration_intensity 2
 The utility sends nine-byte reports of the form
 `0e command value 00 00 00 00 00 00`. The firmware does not provide
 readback for these settings, so a successful write only confirms that the
-kernel accepted the report.
+kernel accepted the report. If access is denied, run the command with
+`sudo`; a missing touchpad is reported separately.
 
 Events visible like this, as per evtest:
 ```

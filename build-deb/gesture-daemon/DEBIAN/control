@@ -1,5 +1,5 @@
 Package: gesture-daemon
-Version: 1.1
+Version: 1.1.1
 Section: utils
 Priority: optional
 Architecture: amd64

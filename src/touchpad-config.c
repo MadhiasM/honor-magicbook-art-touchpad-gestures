@@ -79,6 +79,7 @@ int touchpad_make_report(const struct touchpad_setting *setting, int value,
 
 int touchpad_find_device(char *path, size_t path_size)
 {
+    int saw_permission_denied = 0;
     int i;
 
     if (!path || path_size == 0)
@@ -89,8 +90,11 @@ int touchpad_find_device(char *path, size_t path_size)
 
         snprintf(path, path_size, "/dev/hidraw%d", i);
         fd = open(path, O_RDONLY | O_CLOEXEC);
-        if (fd < 0)
+        if (fd < 0) {
+            if (errno == EACCES)
+                saw_permission_denied = 1;
             continue;
+        }
         memset(&info, 0, sizeof(info));
         if (ioctl(fd, HIDIOCGRAWINFO, &info) == 0 &&
             info.vendor == HONOR_TOUCHPAD_VENDOR &&
@@ -101,7 +105,7 @@ int touchpad_find_device(char *path, size_t path_size)
         close(fd);
     }
     path[0] = '\0';
-    return -1;
+    return saw_permission_denied ? -EACCES : -1;
 }
 
 int touchpad_set(const char *setting_name, int value, char *error,
@@ -127,7 +131,13 @@ int touchpad_set(const char *setting_name, int value, char *error,
     }
     if (strcmp(setting->name, "three_finger_drag") == 0)
         reports = 2;
-    if (touchpad_find_device(path, sizeof(path)) < 0) {
+    if (touchpad_find_device(path, sizeof(path)) == -EACCES) {
+        set_error(error, error_size,
+                  "permission denied while accessing the Honor touchpad "
+                  "(try sudo)");
+        return -1;
+    }
+    if (path[0] == '\0') {
         set_error(error, error_size, "Honor touchpad 35cc:0104 not found");
         return -1;
     }
